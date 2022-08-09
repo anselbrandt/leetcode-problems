@@ -22,17 +22,6 @@ const l2 = {
   },
 };
 
-const expected = {
-  val: 7,
-  next: {
-    val: 0,
-    next: {
-      val: 8,
-      next: null,
-    },
-  },
-};
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
