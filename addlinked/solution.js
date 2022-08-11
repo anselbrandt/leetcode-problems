@@ -1,33 +1,34 @@
 // add linked lists stored in reverse order
 
 const l1 = {
-  val: 2,
+  val: 9,
   next: {
-    val: 4,
+    val: 9,
     next: {
-      val: 3,
-      next: null,
+      val: 9,
+      next: {
+        val: 9,
+        next: {
+          val: 9,
+          next: {
+            val: 9,
+            next: {
+              val: 9,
+              next: null,
+            },
+          },
+        },
+      },
     },
   },
 };
 
 const l2 = {
-  val: 5,
+  val: 9,
   next: {
-    val: 6,
+    val: 9,
     next: {
-      val: 4,
-      next: null,
-    },
-  },
-};
-
-const l3 = {
-  val: 5,
-  next: {
-    val: 6,
-    next: {
-      val: 4,
+      val: 9,
       next: {
         val: 9,
         next: null,
@@ -36,27 +37,29 @@ const l3 = {
   },
 };
 
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
 }
 
-function addList(l1, l2) {
-  const solution = new ListNode();
-  let result = solution;
+var addTwoNumbers = function (l1, l2) {
+  let p1 = l1;
+  let p2 = l2;
+  const list = new ListNode();
+  let current = list;
   let carry = 0;
-  while (l1 || l2) {
-    const a = l1 ? l1.val : 0;
-    const b = l2 ? l2.val : 0;
+  while (p1 || p2 || carry) {
+    const a = p1 && p1.val ? p1.val : 0;
+    const b = p2 && p2.val ? p2.val : 0;
     const sum = a + b + carry;
-    const newVal = sum > 9 ? sum - 10 : sum;
+    const newVal = sum > 9 ? sum % 10 : sum;
     carry = sum > 9 ? 1 : 0;
-    result.next = new ListNode(newVal);
-    result = result.next;
-    if (l1) l1 = l1.next;
-    if (l2) l2 = l2.next;
+    current.next = new ListNode(newVal);
+    current = current.next;
+    if (p1) p1 = p1.next;
+    if (p2) p2 = p2.next;
   }
-  return solution.next;
-}
+  return list.next;
+};
 
-console.log(JSON.stringify(addList(l1, l3), null, 2));
+console.log(JSON.stringify(addTwoNumbers(l1, l2), null, 2));
