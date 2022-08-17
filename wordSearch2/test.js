@@ -27,11 +27,12 @@ const trie = (words) => {
 
 const search = (i, j, board, current, solutions = []) => {
   if (board[i] === undefined || board[i][j] === undefined || !current) return;
-  if (current[board[i][j]] && current[board[i][j]]["word"]) {
-    solutions.push(current[board[i][j]]["word"]);
-    current[board[i][j]]["word"] = null;
-  }
   const letter = board[i][j];
+  if (current[letter] && current[letter]["word"]) {
+    solutions.push(current[letter]["word"]);
+    current[letter]["word"] = null;
+  }
+  board[i][j] = 0;
   search(i + 1, j, board, current[letter], solutions);
   search(i - 1, j, board, current[letter], solutions);
   search(i, j + 1, board, current[letter], solutions);
