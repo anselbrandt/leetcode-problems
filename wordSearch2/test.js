@@ -26,25 +26,18 @@ const trie = (words) => {
 };
 
 const search = (i, j, board, current, solutions = []) => {
-  // ouut of bounds check
   if (board[i] === undefined || board[i][j] === undefined || !current) return;
-  const letter = board[i][j];
-  // match check and solution check (forward looking)
-  // do not check for last node, allow to fail on next recursion
-  if (current[letter] && current[letter]["word"]) {
-    solutions.push(current[letter]["word"]);
-    current[letter]["word"] = null;
+  if (current[board[i][j]] && current[board[i][j]]["word"]) {
+    solutions.push(current[board[i][j]]["word"]);
+    current[board[i][j]]["word"] = null;
   }
-  // mark visited
-  board[i][j] = 0;
+  const letter = board[i][j];
   search(i + 1, j, board, current[letter], solutions);
   search(i - 1, j, board, current[letter], solutions);
   search(i, j + 1, board, current[letter], solutions);
   search(i, j - 1, board, current[letter], solutions);
-  // reset visited
   board[i][j] = letter;
-  // final return of pushed solutions
-  if (solutions.length > 0) return solutions.flat();
+  if (solutions.length > 0) return solutions;
 };
 
 var findWords = function (board, words) {
