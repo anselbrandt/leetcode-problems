@@ -1,6 +1,6 @@
 # Depth First Search (Recursive)
 
-1. Out of bounds check, false node check
+1. Out of bounds check, false node check (or null, or undefined)
 2. Check against possible match and solution at same time, push to solutions array
 3. DO NOT check for last node, allow to fail on next recursion
 4. Mark visited
