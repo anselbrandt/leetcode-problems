@@ -570,18 +570,16 @@ const nums = [
   -21, -50, 55, -23, -94, -73, 46, -85,
 ];
 
-const test = [3, -1, -2, 4, -4];
+const nums2 = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+//6
 
-// moving sum solution
-// overwrite previous array elements
-
-var maxSubArray = function (nums) {
-  let solution = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
-    solution = Math.max(solution, nums[i]);
+var maxSubArray = function (arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    arr[i] = Math.max(arr[i], arr[i] + arr[i - 1]);
+    max = Math.max(max, arr[i]);
   }
-  return solution;
+  return max;
 };
 
 console.log(maxSubArray(nums));
