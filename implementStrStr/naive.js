@@ -9,25 +9,9 @@ const needle = "acacagt";
 //              a  c  a  c  a  g  t
 const prefix = [0, 0, 1, 2, 3, 0, 0];
 
-const prefixGen = (needle) => {
-  const table = [0];
-  for (i in needle) {
-    let max = 0;
-    const slice = needle.slice(0, +i + 1);
-    for (j in slice) {
-      const suffix = slice.slice(slice.length - j, slice.length);
-      const prefix = needle.slice(0, suffix.length);
-      if (suffix === prefix && suffix.length > max) max = suffix.length;
-    }
-    if (+i > 0) table.push(max);
-  }
-  return table;
-};
-
 var strStr = function (haystack, needle) {
   if (needle === "") return -1;
   let index = -1;
-  const table = prefixGen(needle);
   let i = 0;
   let j = 0;
   while (i < haystack.length) {
