@@ -6,9 +6,9 @@ var rob = function (nums) {
   let sum1 = 0,
     sum2 = 0;
   for (n of nums) {
-    let temp = Math.max(n + sum1, sum2);
+    let current = Math.max(n + sum1, sum2);
     sum1 = sum2;
-    sum2 = temp;
+    sum2 = current;
   }
   return sum2;
 };
