@@ -1,3 +1,5 @@
+// optimize by storing intermediate results
+
 const search = (steps, sum = 0, results = new Map()) => {
   if (sum > steps) return 0;
   if (sum === steps) return 1;
