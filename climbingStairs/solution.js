@@ -1,3 +1,4 @@
+// model decisions as tree
 // optimize by storing intermediate results
 
 const search = (steps, sum = 0, results = new Map()) => {
