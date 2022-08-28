@@ -26,4 +26,4 @@ const toTree = (arr) => {
   return btree[0];
 };
 
-console.log(toTree(tree).right);
+console.log(toTree(tree));
