@@ -2,23 +2,28 @@ const tree = Array(31)
   .fill()
   .map((v, i) => i);
 
-const traverse = (arr) => {
-  let sum = 0;
-  let i = 0;
-  const widths = [];
-  while (sum < arr.length) {
-    const width = Math.pow(2, i);
-    widths.push(width);
-    sum = sum + width;
-    i++;
+const toTree = (arr) => {
+  if (arr.length === 1) return arr[0];
+  const [head, ...rest] = arr;
+  const nodes = rest.reduce(function (result, value, index, array) {
+    if (index % 2 === 0)
+      result.push({
+        left: { val: array[index] },
+        right: { val: array[index + 1] },
+      });
+    return result;
+  }, []);
+  const [first, ...last] = nodes;
+  const btree = [{ val: head, ...first }, ...last];
+  let mid = (btree.length - 1) / 2 - 1;
+  while (mid >= 0) {
+    const right = btree.pop();
+    btree[mid].right = { ...btree[mid].right, ...right };
+    const left = btree.pop();
+    btree[mid].left = { ...btree[mid].left, ...left };
+    mid--;
   }
-  const rows = [];
-  while (widths.length) {
-    const width = widths.pop();
-    const current = arr.splice(-width, width);
-    rows.push(current);
-  }
-  console.log(rows);
+  return btree[0];
 };
 
-console.log(traverse(tree));
+console.log(toTree(tree).right);
