@@ -4,26 +4,13 @@ const tree = Array(31)
 
 const toTree = (arr) => {
   if (arr.length === 1) return arr[0];
-  const [head, ...tail] = arr;
-  const nodes = tail.reduce(function (result, value, index, array) {
-    if (index % 2 === 0)
-      result.push({
-        left: { val: array[index] },
-        right: { val: array[index + 1] },
-      });
-    return result;
-  }, []);
-  const [first, ...rest] = nodes;
-  const btree = [{ val: head, ...first }, ...rest];
-  let mid = (btree.length - 1) / 2 - 1;
+  let mid = Math.floor(arr.length / 2) - 1;
   while (mid >= 0) {
-    const right = btree.pop();
-    btree[mid].right = { ...btree[mid].right, ...right };
-    const left = btree.pop();
-    btree[mid].left = { ...btree[mid].left, ...left };
+    const right = arr.pop();
+    const left = arr.pop();
+    arr[mid] = { val: arr[mid], left, right };
     mid--;
   }
-  return btree[0];
+  return arr[0];
 };
-
 console.log(toTree(tree));
