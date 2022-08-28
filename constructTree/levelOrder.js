@@ -4,8 +4,8 @@ const tree = Array(31)
 
 const toTree = (arr) => {
   if (arr.length === 1) return arr[0];
-  const [head, ...rest] = arr;
-  const nodes = rest.reduce(function (result, value, index, array) {
+  const [head, ...tail] = arr;
+  const nodes = tail.reduce(function (result, value, index, array) {
     if (index % 2 === 0)
       result.push({
         left: { val: array[index] },
@@ -13,8 +13,8 @@ const toTree = (arr) => {
       });
     return result;
   }, []);
-  const [first, ...last] = nodes;
-  const btree = [{ val: head, ...first }, ...last];
+  const [first, ...rest] = nodes;
+  const btree = [{ val: head, ...first }, ...rest];
   let mid = (btree.length - 1) / 2 - 1;
   while (mid >= 0) {
     const right = btree.pop();
