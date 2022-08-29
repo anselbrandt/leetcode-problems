@@ -4,14 +4,31 @@ const tree = Array(31)
 
 const toTree = (arr) => {
   if (arr.length === 1) return arr[0];
-  let mid = Math.floor(arr.length / 2) - 1;
+  let i = 0;
+  let sum = 0;
+  let width = 0;
+  const length = tree.length;
+  while (sum < length) {
+    width = Math.pow(2, i);
+    sum = sum + width;
+    i++;
+  }
+  const lastRow = sum - width - 1;
+  const pre = arr.map((val, i) => {
+    if (i > lastRow) {
+      return { val: val };
+    } else {
+      return val;
+    }
+  });
+  let mid = Math.floor(pre.length / 2) - 1;
   while (mid >= 0) {
-    const right = arr.pop();
-    const left = arr.pop();
-    arr[mid] = { val: arr[mid], left, right };
+    const right = pre.pop();
+    const left = pre.pop();
+    pre[mid] = { val: pre[mid], left, right };
     mid--;
   }
-  return arr[0];
+  return pre[0];
 };
 
 const root = toTree(tree);

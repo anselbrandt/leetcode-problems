@@ -30,4 +30,5 @@ const toTree = (arr) => {
   }
   return pre[0];
 };
-console.log(JSON.stringify(toTree(tree), null, 1));
+
+console.log(JSON.stringify(toTree(tree), null, 2));
