@@ -43,5 +43,3 @@ var diameterOfBinaryTree = function (root) {
 };
 
 console.log(diameterOfBinaryTree(root));
-
-console.log(JSON.stringify(root, null, 2));
