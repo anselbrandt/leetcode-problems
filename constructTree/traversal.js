@@ -29,3 +29,9 @@ const toTree = (arr) => {
 };
 
 const root = toTree(tree);
+
+const search = (node) => {};
+
+var diameterOfBinaryTree = function (root) {};
+
+console.log(diameterOfBinaryTree(root));
