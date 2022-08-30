@@ -1,3 +1,7 @@
+// calculate diameter from height
+// height of null nodes -1
+// height of terminal non-null nodes 0
+
 const tree = Array(31)
   .fill()
   .map((v, i) => i);
@@ -53,13 +57,13 @@ var diameterOfBinaryTree = function (root) {
   let max = 0;
   const search = (node) => {
     if (!node) return -1;
-    const left = search(node.left);
-    const right = search(node.right);
-    max = Math.max(max, 2 + left + right);
-    return 1 + Math.max(left, right);
+    const left = search(node.left) + 1;
+    const right = search(node.right) + 1;
+    max = Math.max(max, left + right);
+    return Math.max(left, right);
   };
   search(root);
   return max;
 };
 
-console.log(diameterOfBinaryTree(root2));
+console.log(diameterOfBinaryTree(root));
