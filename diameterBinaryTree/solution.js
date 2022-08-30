@@ -31,15 +31,35 @@ const toTree = (arr) => {
   return pre[0];
 };
 
-const root = toTree(arr);
+const root = toTree(tree);
 
-const search = (node) => {
-  if (!node) return -1;
-  return node.val;
+const root2 = {
+  val: 1,
+  left: {
+    val: 2,
+    left: {
+      val: 4,
+    },
+    right: {
+      val: 5,
+    },
+  },
+  right: {
+    val: 3,
+  },
 };
 
 var diameterOfBinaryTree = function (root) {
-  return search(root);
+  let max = 0;
+  const search = (node) => {
+    if (!node) return -1;
+    const left = search(node.left);
+    const right = search(node.right);
+    max = Math.max(max, 2 + left + right);
+    return 1 + Math.max(left, right);
+  };
+  search(root);
+  return max;
 };
 
-console.log(diameterOfBinaryTree(root));
+console.log(diameterOfBinaryTree(root2));
