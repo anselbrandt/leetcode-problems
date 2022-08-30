@@ -30,7 +30,6 @@ const reverse = (head) => {
     return head;
   }
   let current = reverse(head.next);
-  console.log(head.val, current);
   head.next.next = head;
   head.next = null;
   return current;
